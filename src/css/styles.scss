@@ -1,5 +1,14 @@
+// css normalize
+@import './config/normalize';
+
 // global variables - colors, fonts
-@import "./config/global";
+@import './config/global';
+
+// basic styles and resets
+@import './config/basic';
 
 // components
-@import "./components/index";
+@import './components/index';
+
+// overlay
+@import './overlay/index';

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Jumbotron from "./components/Jumbotron";
+import BarChart from "./components/BarChart";
+import Footer from "./components/Footer";
 
 // TODO: make 2 graphs - for 2000 and 2001 with city districts name and respective number
 // TODO: duplicate records contain german, foreigns and total - select only total
@@ -45,9 +50,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>hello world</h1>
-        </header>
+        <Header />
+        <Sidebar />
       </div>
     );
   }

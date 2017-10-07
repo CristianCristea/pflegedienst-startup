@@ -1,0 +1,35 @@
+aside {
+  background-color: $mulled-whine;
+  height: 100vh;
+  font-size: 2em;
+  min-width: 3em;
+  position: fixed;
+
+  nav {
+    margin-top: 100px;
+
+    .navbar {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: block;
+        border-left: 3px solid transparent;
+
+        &:hover {
+          border-color: $supernova;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .nav-link {
+      text-decoration: none;
+      padding: 0.5em 0 0.5em 1em;
+      display: block;
+      color: $white;
+      margin: 0 auto;
+    }
+  }
+}

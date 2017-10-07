@@ -1,0 +1,19 @@
+header {
+  min-height: 3em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $ship-cove;
+  z-index: 1;
+
+  .brand {
+    .logo {
+      display: inline-block;
+      color: $white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      padding: 1em;
+    }
+  }
+}
