@@ -3,5 +3,21 @@
 }
 
 body {
+  font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: $base-font-size;
+  color: $black;
+}
+
+.container {
+  width: 90%;
+  padding-left: 3rem;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1400px) {
+    width: 80%;
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: 70%;
+  }
 }
