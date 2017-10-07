@@ -1,0 +1,62 @@
+.jumbotron {
+  background-color: $gray;
+  font-size: 1.5rem;
+  padding-top: 3em;
+  margin-left: 3em;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+
+  .general-info {
+    width: 100%;
+    min-height: 200px;
+    background: $supernova url('../img/nature.jpg') no-repeat center center;
+    background-size: cover;
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 200;
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+      flex: 1 0;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+  }
+
+  .section-info {
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      flex: 3 0;
+      align-content: center;
+    }
+
+    @media screen and (min-width: 1024px) {
+      flex: 4 0;
+    }
+
+    @media screen and (min-width: 1200px) {
+      flex: 5 0;
+    }
+
+    h2 {
+      margin: 0;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      font-size: 2rem;
+      font-weight: 700;
+
+      @media screen and (min-width: 1024px) {
+        font-size: 2.75rem;
+      }
+    }
+  }
+}
