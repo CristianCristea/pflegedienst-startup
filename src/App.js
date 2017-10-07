@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Jumbotron from "./components/Jumbotron";
-import BarChart from "./components/BarChart";
-import Footer from "./components/Footer";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Jumbotron from './components/Jumbotron';
+import BarChart from './components/BarChart';
+import Footer from './components/Footer';
 
 // TODO: make 2 graphs - for 2000 and 2001 with city districts name and respective number
 // TODO: duplicate records contain german, foreigns and total - select only total
@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   getData(url, params = {}) {
-    const proxyUrl = "https://cors-anywhere.herokuapp.com";
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com';
     axios
       .get(`${proxyUrl}/${url}`, { params: params })
       .then(response => {
@@ -38,20 +38,35 @@ class App extends Component {
     });
   }
 
+  formatName(string) {
+    return string.replace(/[^a-zA-Z|-]/gi, '');
+  }
+
   componentDidMount() {
-    // this.getData(
-    //   "https://www.opengov-muenchen.de/api/action/datastore_search",
-    //   { resource_id: "fe9aeef9-3479-407c-b38f-db73a4dadf9f" }
-    // );
+    this.getData(
+      'https://www.opengov-muenchen.de/api/action/datastore_search',
+      { resource_id: 'fe9aeef9-3479-407c-b38f-db73a4dadf9f' }
+    );
   }
 
   render() {
-    // const validRecords = this.filterRecords(this.state.records, "JAHR", "2015");
+    const totalPopulationRecords = this.filterRecords(
+      this.state.records,
+      'INDIKATOR_AUSPRAEGUNG',
+      'gesamt'
+    );
+    const firstYearRecords = this.filterRecords(
+      totalPopulationRecords,
+      'JAHR',
+      '2000'
+    );
 
     return (
       <div className="App">
         <Header />
         <Sidebar />
+        <Jumbotron title="Population over 65" />
+        <BarChart records={firstYearRecords} formatName={this.formatName} />
       </div>
     );
   }
