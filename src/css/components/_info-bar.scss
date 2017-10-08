@@ -1,0 +1,45 @@
+.info-bar {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: $white;
+  height: 100vh;
+  background: linear-gradient($shamrock, $jungle-green);
+
+  @media screen and (min-width: 1200px) {
+    display: block;
+    width: 260px;
+    position: fixed;
+    left: calc(3em);
+    top: calc(3em);
+  }
+
+  .header-info {
+    height: 200px;
+    position: relative;
+    background: $supernova url('../img/munich.jpg') no-repeat center center;
+    background-size: cover;
+    color: $white;
+  }
+
+  .weather-info {
+    // background-color: $shamrock;
+    font-size: 1rem;
+    padding: 1em;
+  }
+
+  .general-info {
+    // background-color: $jungle-green;
+    p {
+      font-size: 1rem;
+      padding: 1em;
+    }
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}

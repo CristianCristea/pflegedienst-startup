@@ -398,8 +398,7 @@ body {
   color: #212121; }
 
 .container {
-  width: 90%;
-  padding-left: 3rem;
+  max-width: 90%;
   margin: 0 auto; }
   @media screen and (min-width: 1400px) {
     .container {
@@ -407,6 +406,11 @@ body {
   @media screen and (min-width: 1600px) {
     .container {
       width: 70%; } }
+
+@media screen and (min-width: 1200px) {
+  .wrapper .inner-wrapper {
+    width: calc(100% - 260px);
+    margin-left: 260px; } }
 
 header {
   min-height: 3em;
@@ -453,39 +457,12 @@ aside {
   font-size: 1.5rem;
   padding-top: 3em;
   margin-left: 3em; }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1200px) {
     .jumbotron {
-      display: flex;
-      align-items: center; } }
-  .jumbotron .general-info {
-    width: 100%;
-    min-height: 200px;
-    background: #fc0 url("../img/nature.jpg") no-repeat center center;
-    background-size: cover;
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 200;
-    position: relative; }
-    @media screen and (min-width: 768px) {
-      .jumbotron .general-info {
-        flex: 1 0; } }
-    .jumbotron .general-info span {
-      display: block;
-      position: absolute;
-      bottom: 10px;
-      left: 10px; }
+      padding-top: 4.5em;
+      height: calc(200px + 3em); } }
   .jumbotron .section-info {
     text-align: center; }
-    @media screen and (min-width: 768px) {
-      .jumbotron .section-info {
-        flex: 3 0;
-        align-content: center; } }
-    @media screen and (min-width: 1024px) {
-      .jumbotron .section-info {
-        flex: 4 0; } }
-    @media screen and (min-width: 1200px) {
-      .jumbotron .section-info {
-        flex: 5 0; } }
     .jumbotron .section-info h2 {
       margin: 0;
       padding-top: 1em;
@@ -496,8 +473,44 @@ aside {
         .jumbotron .section-info h2 {
           font-size: 2.75rem; } }
 
+.info-bar {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #fff;
+  height: 100vh;
+  background: linear-gradient(#44d9a1, #2dc765); }
+  @media screen and (min-width: 1200px) {
+    .info-bar {
+      display: block;
+      width: 260px;
+      position: fixed;
+      left: calc(3em);
+      top: calc(3em); } }
+  .info-bar .header-info {
+    height: 200px;
+    position: relative;
+    background: #fc0 url("../img/munich.jpg") no-repeat center center;
+    background-size: cover;
+    color: #fff; }
+  .info-bar .weather-info {
+    font-size: 1rem;
+    padding: 1em; }
+  .info-bar .general-info p {
+    font-size: 1rem;
+    padding: 1em; }
+  .info-bar span {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 10px; }
+
 .bar-chart {
-  margin-top: 100px; }
+  font-size: 1.5rem;
+  padding-top: 1em;
+  padding-left: 1rem;
+  width: 90%;
+  margin: 0 auto; }
 
 .active-nav-link {
   border-color: #fc0 !important; }

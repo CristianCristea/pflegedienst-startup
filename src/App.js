@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Jumbotron from './components/Jumbotron';
 import BarChart from './components/BarChart';
+import InfoBar from './components/InfoBar';
 import Footer from './components/Footer';
 
 // TODO: make 2 graphs - for 2000 and 2001 with city districts name and respective number
@@ -65,8 +66,13 @@ class App extends Component {
       <div className="App">
         <Header />
         <Sidebar />
-        <Jumbotron title="Population over 65" />
-        <BarChart records={firstYearRecords} formatName={this.formatName} />
+        <div className="wrapper">
+          <InfoBar />
+          <div className="inner-wrapper">
+            <Jumbotron title="Population over 65" />
+            <BarChart records={firstYearRecords} formatName={this.formatName} />
+          </div>
+        </div>
       </div>
     );
   }

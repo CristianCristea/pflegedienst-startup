@@ -28,24 +28,22 @@ const BarChart = ({ records, formatName }) => {
     "'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
 
   return (
-    <div>
-      <div className="container bar-chart">
-        <Bar
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: 'Year 2000',
-                data: populationNumber,
-                backgroundColor: backgroundColor,
-                borderColor: borderColors,
-                borderWidth: 1.2
-              }
-            ]
-          }}
-          options={{}}
-        />
-      </div>
+    <div className="bar-chart">
+      <Bar
+        data={{
+          labels: labels,
+          datasets: [
+            {
+              label: 'Year 2000',
+              data: populationNumber,
+              backgroundColor: backgroundColor,
+              borderColor: borderColors,
+              borderWidth: 1.2
+            }
+          ]
+        }}
+        options={{}}
+      />
     </div>
   );
 };
