@@ -6,6 +6,7 @@ import Jumbotron from './components/Jumbotron';
 import BarChart from './components/BarChart';
 import InfoBar from './components/InfoBar';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
 
 // TODO: make 2 graphs - for 2000 and 2001 with city districts name and respective number
 // TODO: duplicate records contain german, foreigns and total - select only total
@@ -70,7 +71,14 @@ class App extends Component {
           <InfoBar />
           <div className="inner-wrapper">
             <Jumbotron title="Population over 65" />
-            <BarChart records={firstYearRecords} formatName={this.formatName} />
+            {firstYearRecords.length === 0 ? (
+              <Loading />
+            ) : (
+              <BarChart
+                records={firstYearRecords}
+                formatName={this.formatName}
+              />
+            )}
           </div>
         </div>
       </div>
