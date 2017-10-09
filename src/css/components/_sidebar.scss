@@ -6,7 +6,7 @@ aside {
   position: fixed;
 
   nav {
-    margin-top: 100px;
+    margin-top: 3em;
 
     .navbar {
       list-style: none;
@@ -26,7 +26,7 @@ aside {
 
     .nav-link {
       text-decoration: none;
-      padding: 0.5em 0 0.5em 1em;
+      padding: 0.75em 0 0.75em calc(1em - 3px);
       display: block;
       color: $white;
       margin: 0 auto;

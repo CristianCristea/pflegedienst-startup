@@ -393,7 +393,7 @@ template {
   box-sizing: border-box; }
 
 body {
-  font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Comfortaa', cursive;
   font-size: 14px;
   color: #212121; }
 
@@ -434,7 +434,7 @@ aside {
   min-width: 3em;
   position: fixed; }
   aside nav {
-    margin-top: 100px; }
+    margin-top: 3em; }
     aside nav .navbar {
       list-style: none;
       margin: 0;
@@ -447,7 +447,7 @@ aside {
           cursor: pointer; }
     aside nav .nav-link {
       text-decoration: none;
-      padding: 0.5em 0 0.5em 1em;
+      padding: 0.75em 0 0.75em calc(1em - 3px);
       display: block;
       color: #fff;
       margin: 0 auto; }
@@ -489,21 +489,49 @@ aside {
       top: calc(3em); } }
   .info-bar .header-info {
     height: 200px;
-    position: relative;
-    background: #fc0 url("../img/munich.jpg") no-repeat center center;
+    background: #fc0 url("../img/img1.jpg") no-repeat center center;
     background-size: cover;
-    color: #fff; }
+    color: #fff;
+    display: flex; }
   .info-bar .weather-info {
     font-size: 1rem;
     padding: 1em; }
   .info-bar .general-info p {
     font-size: 1rem;
     padding: 1em; }
-  .info-bar span {
-    display: block;
-    position: absolute;
-    bottom: 10px;
-    left: 10px; }
+
+.loading {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 1rem; }
+
+.date {
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-end;
+  margin-left: 1em;
+  margin-bottom: 0.5em; }
+  .date .weekday {
+    font-weight: 300;
+    font-size: 1rem; }
+  .date .month {
+    font-size: 2rem;
+    display: flex; }
+  .date .day {
+    margin-left: 0.7rem;
+    display: flex; }
+  .date .suffix {
+    font-size: 0.7rem;
+    font-weight: 300;
+    line-height: 1.6; }
+
+.time {
+  align-self: flex-end;
+  margin-bottom: 0.5em;
+  margin-left: 4.5em;
+  font-size: 1rem; }
 
 .bar-chart {
   font-size: 1.5rem;
