@@ -32,6 +32,7 @@ class InfoBar extends Component {
 
     return months[Number(month) - 1];
   }
+
   formatDateWeekday(weekday) {
     const weekdays = [
       'Montag',
@@ -69,16 +70,6 @@ class InfoBar extends Component {
       minutes: min
     });
   }
-
-  /*
-  create new date
-  get month
-  get day - getDate
-  get weekday - getDay
-  get hours
-  get minutes
-  format month and weekday
-  */
 
   render() {
     const currentDate = this.createDate();
