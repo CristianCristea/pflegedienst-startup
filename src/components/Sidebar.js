@@ -18,12 +18,7 @@ const Sidebar = () => {
           </li>
           <li>
             <a href="/" className="nav-link">
-              <FontAwesome
-                name="ban"
-                tag="i"
-                tag="i"
-                style={{ color: 'red' }}
-              />
+              <FontAwesome name="ban" tag="i" style={{ color: 'red' }} />
             </a>
           </li>
         </ul>
