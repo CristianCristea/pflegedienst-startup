@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Jumbotron from './components/Jumbotron';
 import BarChart from './components/BarChart';
 import InfoBar from './components/InfoBar';
 import Footer from './components/Footer';
-import Loading from './components/Loading';
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +15,37 @@ class App extends Component {
     };
   }
 
-  getData(url, params = {}) {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com';
-    axios
-      .get(`${proxyUrl}/${url}`, { params: params })
-      .then(response => {
-        this.setState({ records: response.data.result.records });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  // filter raw data(csv string) into array of lines
+  processCSVData(csvStringData) {
+    const lines = csvStringData.split(/\n/);
+    return lines.filter(line => {
+      return (
+        line.indexOf('gesamt') !== -1 && line.indexOf('Gesamtstadt') === -1
+      );
+    });
   }
 
-  filterRecords(records, property, value) {
-    return records.filter(record => {
-      return record[property] == value;
+  // remove empty elems and split each line(string) into own array
+  sanitizeData(arr) {
+    return arr.map(line => {
+      let lineArr = line.replace(/"/g, ' ').split(/, /);
+      let filterElements = lineArr.filter(elem => {
+        return elem.trim().match(/\S/);
+      });
+      return filterElements;
+    });
+  }
+
+  // return an array of obj(one obj for each district)
+  agingRateDistricts(districtsData) {
+    return districtsData.map(district => {
+      return {
+        agingRate: Number(district[3].replace(',', '.')),
+        oldPop: Number(district[4]),
+        youngPop: Number(district[5]),
+        year: Number(district[8]),
+        cityDistrict: district[11].trim()
+      };
     });
   }
 
@@ -39,24 +53,12 @@ class App extends Component {
     return string.replace(/[^a-zA-Z|-]/gi, '');
   }
 
-  componentDidMount() {
-    this.getData(
-      'https://www.opengov-muenchen.de/api/action/datastore_search',
-      { resource_id: 'fe9aeef9-3479-407c-b38f-db73a4dadf9f' }
-    );
-  }
+  componentDidMount() {}
 
   render() {
-    const totalPopulationRecords = this.filterRecords(
-      this.state.records,
-      'INDIKATOR_AUSPRAEGUNG',
-      'gesamt'
-    );
-    const firstYearRecords = this.filterRecords(
-      totalPopulationRecords,
-      'JAHR',
-      '2000'
-    );
+    const csvData = this.processCSVData(this.props.agingRateData);
+    const rawDistrictsData = this.sanitizeData(csvData);
+    const records = this.agingRateDistricts(rawDistrictsData);
 
     return (
       <div className="App">
@@ -66,14 +68,8 @@ class App extends Component {
           <InfoBar />
           <div className="inner-wrapper">
             <Jumbotron title="Population over 65" />
-            {firstYearRecords.length === 0 ? (
-              <Loading />
-            ) : (
-              <BarChart
-                records={firstYearRecords}
-                formatName={this.formatName}
-              />
-            )}
+            <BarChart records={records} formatName={this.formatName} />
+            <Footer />
           </div>
         </div>
       </div>

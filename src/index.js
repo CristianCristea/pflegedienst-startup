@@ -1,8 +1,91 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./css/styles.css";
-import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './css/styles.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const agingRateData = `"Bevölkerung","Überalterungsquotient","gesamt","187,3","10720","5724","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","25","25 Laim"
+"Bevölkerung","Überalterungsquotient","Deutsche","169,7","8836","5207","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","18","18 Untergiesing - Harlaching"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","250,6","1386","553","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","8","08 Schwanthalerhöhe"
+"Bevölkerung","Überalterungsquotient","Deutsche","159,8","8972","5616","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","7","07 Sendling - Westpark"
+"Bevölkerung","Überalterungsquotient","gesamt","115,6","8497","7352","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","5","05 Au - Haidhausen"
+"Bevölkerung","Überalterungsquotient","Deutsche","120,9","4611","3814","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","6","06 Sendling"
+"Bevölkerung","Überalterungsquotient","gesamt","154,7","10758","6954","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","7","07 Sendling - Westpark"
+"Bevölkerung","Überalterungsquotient","gesamt","124,7","11629","9322","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","11","11 Milbertshofen - Am Hart"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","137,7","1709","1241","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","10","10 Moosach"
+"Bevölkerung","Überalterungsquotient","Deutsche","162,6","2839","1746","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","1","01 Altstadt - Lehel"
+"Bevölkerung","Überalterungsquotient","Deutsche","103,3","6755","6538","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","5","05 Au - Haidhausen"
+"Bevölkerung","Überalterungsquotient","Deutsche","94,6","4191","4429","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","2","02 Ludwigsvorstadt - Isarvorstadt"
+"Bevölkerung","Überalterungsquotient","Deutsche","136","9834","7233","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","12","12 Schwabing - Freimann"
+"Bevölkerung","Überalterungsquotient","gesamt","138","16342","11845","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","9","09 Neuhausen - Nymphenburg"
+"Bevölkerung","Überalterungsquotient","gesamt","148,4","22704","15295","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","16","16 Ramersdorf - Perlach"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","122,1","1634","1338","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","21","21 Pasing - Obermenzing"
+"Bevölkerung","Überalterungsquotient","Deutsche","192,9","9115","4726","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","25","25 Laim"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","123,5","1905","1542","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","24","24 Feldmoching - Hasenbergl"
+"Bevölkerung","Überalterungsquotient","gesamt","100","3690","3691","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","8","08 Schwanthalerhöhe"
+"Bevölkerung","Überalterungsquotient","gesamt","167,8","10264","6116","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","18","18 Untergiesing - Harlaching"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","214","1742","814","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","5","05 Au - Haidhausen"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","141,6","1737","1227","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","17","17 Obergiesing - Fasangarten"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","133,5","1786","1338","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","7","07 Sendling - Westpark"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","166,9","1711","1025","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","2","02 Ludwigsvorstadt - Isarvorstadt"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","131,1","4297","3278","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","16","16 Ramersdorf - Perlach"
+"Bevölkerung","Überalterungsquotient","Deutsche","139,6","12541","8983","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","21","21 Pasing - Obermenzing"
+"Bevölkerung","Überalterungsquotient","Deutsche","172","15571","9052","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","13","13 Bogenhausen"
+"Bevölkerung","Überalterungsquotient","gesamt","161,6","17697","10952","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","13","13 Bogenhausen"
+"Bevölkerung","Überalterungsquotient","gesamt","140,3","265607","189300","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Gesamtstadt","#100","Stadt München"
+"Bevölkerung","Überalterungsquotient","gesamt","142,2","6292","4425","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","3","03 Maxvorstadt"
+"Bevölkerung","Überalterungsquotient","Deutsche","147,6","8055","5456","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","10","10 Moosach"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","116","2431","2095","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","19","19 Thalkirchen - Obersendling - Forstenried - Fürstenried - Solln"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","160,8","1605","998","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","25","25 Laim"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","177,2","1662","938","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","4","04 Schwabing - West"
+"Bevölkerung","Überalterungsquotient","gesamt","173,6","3490","2010","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","1","01 Altstadt - Lehel"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","160,1","2524","1577","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","9","09 Neuhausen - Nymphenburg"
+"Bevölkerung","Überalterungsquotient","gesamt","128,8","8301","6443","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","17","17 Obergiesing - Fasangarten"
+"Bevölkerung","Überalterungsquotient","gesamt","89,6","10873","12131","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","15","15 Trudering - Riem"
+"Bevölkerung","Überalterungsquotient","Deutsche","146,7","9741","6638","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","4","04 Schwabing - West"
+"Bevölkerung","Überalterungsquotient","gesamt","145,8","9764","6697","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","10","10 Moosach"
+"Bevölkerung","Überalterungsquotient","gesamt","128,3","11472","8943","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","24","24 Feldmoching - Hasenbergl"
+"Bevölkerung","Überalterungsquotient","gesamt","134,6","6211","4615","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","23","23 Allach - Untermenzing"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","140,4","2896","2063","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","11","11 Milbertshofen - Am Hart"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","166,3","1219","733","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","3","03 Maxvorstadt"
+"Bevölkerung","Überalterungsquotient","gesamt","173,7","10953","6306","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","20","20 Hadern"
+"Bevölkerung","Überalterungsquotient","Deutsche","137,4","5073","3692","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","3","03 Maxvorstadt"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","179,9","1295","720","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","6","06 Sendling"
+"Bevölkerung","Überalterungsquotient","gesamt","129,6","11329","8743","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","12","12 Schwabing - Freimann"
+"Bevölkerung","Überalterungsquotient","Deutsche","186,8","17953","9613","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","19","19 Thalkirchen - Obersendling - Forstenried - Fürstenried - Solln"
+"Bevölkerung","Überalterungsquotient","gesamt","174,1","20384","11708","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","19","19 Thalkirchen - Obersendling - Forstenried - Fürstenried - Solln"
+"Bevölkerung","Überalterungsquotient","Deutsche","120,3","8733","7259","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","11","11 Milbertshofen - Am Hart"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","105,9","955","902","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","22","22 Aubing - Lochhausen - Langwied"
+"Bevölkerung","Überalterungsquotient","gesamt","144,3","9132","6328","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","22","22 Aubing - Lochhausen - Langwied"
+"Bevölkerung","Überalterungsquotient","Deutsche","125,8","6564","5216","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","17","17 Obergiesing - Fasangarten"
+"Bevölkerung","Überalterungsquotient","gesamt","108,2","5902","5454","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","2","02 Ludwigsvorstadt - Isarvorstadt"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","151,4","1264","835","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","20","20 Hadern"
+"Bevölkerung","Überalterungsquotient","Deutsche","140,7","222896","158427","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Gesamtstadt","#100","Stadt München"
+"Bevölkerung","Überalterungsquotient","Deutsche","150,7","8177","5426","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","22","22 Aubing - Lochhausen - Langwied"
+"Bevölkerung","Überalterungsquotient","Deutsche","153,2","18407","12017","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","16","16 Ramersdorf - Perlach"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","157,1","1428","909","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","18","18 Untergiesing - Harlaching"
+"Bevölkerung","Überalterungsquotient","Deutsche","134,6","6351","4719","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","14","14 Berg am Laim"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","124,8","1368","1096","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","14","14 Berg am Laim"
+"Bevölkerung","Überalterungsquotient","gesamt","132,7","7719","5815","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","14","14 Berg am Laim"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","138,3","42711","30873","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Gesamtstadt","#100","Stadt München"
+"Bevölkerung","Überalterungsquotient","Deutsche","90,8","9712","10701","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","15","15 Trudering - Riem"
+"Bevölkerung","Überalterungsquotient","Deutsche","134,6","13818","10268","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","9","09 Neuhausen - Nymphenburg"
+"Bevölkerung","Überalterungsquotient","Deutsche","134,9","5487","4068","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","23","23 Allach - Untermenzing"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","132,4","724","547","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","23","23 Allach - Untermenzing"
+"Bevölkerung","Überalterungsquotient","Deutsche","73,4","2304","3138","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","8","08 Schwanthalerhöhe"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","81,2","1161","1430","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","15","15 Trudering - Riem"
+"Bevölkerung","Überalterungsquotient","gesamt","150,5","11403","7576","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","4","04 Schwabing - West"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","246,6","651","264","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","1","01 Altstadt - Lehel"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","99","1495","1510","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","12","12 Schwabing - Freimann"
+"Bevölkerung","Überalterungsquotient","Ausländer_innen","111,9","2126","1900","","","","Anzahl Einwohner ab 65 (Ausländer)","Anzahl Einwohner jünger 15 (Ausländer)","","","","2015","Stadtbezirk","13","13 Bogenhausen"
+"Bevölkerung","Überalterungsquotient","gesamt","130,3","5906","4534","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","6","06 Sendling"
+"Bevölkerung","Überalterungsquotient","gesamt","137,3","14175","10321","","","","Anzahl Einwohner ab 65 (gesamt)","Anzahl Einwohner jünger 15 (gesamt)","","","","2015","Stadtbezirk","21","21 Pasing - Obermenzing"
+"Bevölkerung","Überalterungsquotient","Deutsche","177,1","9689","5471","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","20","20 Hadern"
+"Bevölkerung","Überalterungsquotient","Deutsche","129,3","9567","7401","","","","Anzahl Einwohner ab 65 (deutsch)","Anzahl Einwohner jünger 15 (deutsch)","","","","2015","Stadtbezirk","24","24 Feldmoching - Hasenbergl"
+`;
+
+ReactDOM.render(
+  <App agingRateData={agingRateData} />,
+  document.getElementById('root')
+);
 registerServiceWorker();

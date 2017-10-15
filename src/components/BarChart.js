@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Bar, defaults } from 'react-chartjs-2';
 
-// TODO: add proptypes, add onClick - show a modal with donaught chart - german, foreign
-
 export default class BarChart extends Component {
   constructor(props) {
     super(props);
@@ -20,17 +18,13 @@ export default class BarChart extends Component {
 
   sortRecords() {
     const sortedRecords = this.props.records.sort((a, b) => {
-      return a['NAME'] < b['NAME'] ? -1 : 1;
+      return a['cityDistrict'] < b['cityDistrict'] ? -1 : 1;
     });
-
-    // remove last elem - population for whole city
-    const totalPopulation = sortedRecords.pop();
 
     // after sortedRecords is in the state, store chart data
     this.setState(
       {
-        sortedRecords: sortedRecords,
-        totalPopulation: totalPopulation
+        sortedRecords: sortedRecords
       },
       () => {
         this.createChartData();
@@ -45,8 +39,8 @@ export default class BarChart extends Component {
     const borderColor = [];
 
     this.state.sortedRecords.forEach(record => {
-      labels.push(this.props.formatName(record['NAME']));
-      populationNumber.push(record['BASISWERT_1']);
+      labels.push(this.props.formatName(record['cityDistrict']));
+      populationNumber.push(record['oldPop']);
       backgroundColor.push('rgba(255, 204, 0, .6)');
       borderColor.push('rgb(115, 119, 191)');
     });
@@ -84,7 +78,7 @@ export default class BarChart extends Component {
             labels: labels,
             datasets: [
               {
-                label: 'Year 2000',
+                label: 'Population over 65',
                 data: populationNumber,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
