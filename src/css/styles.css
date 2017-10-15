@@ -515,8 +515,7 @@ footer {
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-end;
-  margin-left: 1em;
-  margin-bottom: 0.5em; }
+  margin-left: 1em; }
   .date .weekday {
     font-weight: 300;
     font-size: 1rem; }
@@ -533,9 +532,9 @@ footer {
 
 .time {
   align-self: flex-end;
-  margin-bottom: 0.5em;
   margin-left: 4.5em;
-  font-size: 1rem; }
+  font-size: 1rem;
+  line-height: 1.6; }
 
 .bar-chart {
   font-size: 1.5rem;
