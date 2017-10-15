@@ -12,3 +12,8 @@ const ShowTime = ({ hours, minutes }) => {
 };
 
 export default ShowTime;
+
+ShowTime.propTypes = {
+  hours: PropTypes.string,
+  minutes: PropTypes.string
+};

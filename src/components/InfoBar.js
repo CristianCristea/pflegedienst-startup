@@ -30,21 +30,21 @@ class InfoBar extends Component {
       'Dez'
     ];
 
-    return months[Number(month) - 1];
+    return months[Number(month)];
   }
 
-  formatDateWeekday(weekday) {
+  formatDateWeekday(day) {
     const weekdays = [
       'Montag',
       'Dienstag',
       'Mittwoch',
       'Donnerstag',
-      'Fritag',
+      'Freitag',
       'Samstag',
       'Sonntag'
     ];
 
-    return weekdays[Number(weekday) - 1];
+    return weekdays[Number(day)];
   }
 
   createDate() {
@@ -52,12 +52,8 @@ class InfoBar extends Component {
     const weekday = this.formatDateWeekday(date.getDay());
     const month = this.formatDateMonth(date.getMonth());
     const day = date.getDate();
-    const year = date
-      .getFullYear()
-      .toString()
-      .slice(2);
 
-    return [weekday, day, month, year];
+    return [weekday, day, month];
   }
 
   createTime() {
@@ -66,14 +62,33 @@ class InfoBar extends Component {
     let min = date.getMinutes();
 
     this.setState({
-      hours: hours,
-      minutes: min
+      hours: hours < 10 ? `0${hours}` : `${hours}`,
+      minutes: min < 10 ? `0${min}` : `${min}`
     });
+  }
+
+  formatDateSuffix(day) {
+    if (day >= 11 && day <= 12) {
+      return 'th';
+    }
+    switch (day % 10) {
+      case 1:
+        return 'st';
+        break;
+      case 2:
+        return 'nd';
+        break;
+      case 3:
+        return 'rd';
+        break;
+      default:
+        return 'th';
+    }
   }
 
   render() {
     const currentDate = this.createDate();
-    let startTime = setInterval(this.createTime, 1000);
+    setInterval(this.createTime, 1000);
 
     return (
       <div className="info-bar">
@@ -82,7 +97,7 @@ class InfoBar extends Component {
             weekday={currentDate[0]}
             day={currentDate[1]}
             month={currentDate[2]}
-            year={currentDate[3]}
+            formatDateSuffix={this.formatDateSuffix}
           />
           <ShowTime hours={this.state.hours} minutes={this.state.minutes} />
         </div>

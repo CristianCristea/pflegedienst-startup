@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShowDate = ({ weekday, day, month, year }) => {
+const ShowDate = ({ weekday, day, month, formatDateSuffix }) => {
   return (
     <div className="date">
       <span className="weekday">{weekday}</span>
@@ -9,7 +9,7 @@ const ShowDate = ({ weekday, day, month, year }) => {
         {month}
         <span className="day">
           {day}
-          <span className="suffix">th</span>
+          <span className="suffix">{formatDateSuffix(day)}</span>
         </span>
       </span>
     </div>
@@ -17,3 +17,9 @@ const ShowDate = ({ weekday, day, month, year }) => {
 };
 
 export default ShowDate;
+
+ShowDate.propTypes = {
+  weekday: PropTypes.string.isRequired,
+  day: PropTypes.number.isRequired,
+  month: PropTypes.string.isRequired
+};
