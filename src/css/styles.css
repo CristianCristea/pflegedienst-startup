@@ -543,5 +543,21 @@ footer {
   width: 90%;
   margin: 0 auto; }
 
+.chart-btn {
+  background-color: #7377bf;
+  border: 2px solid #7377bf;
+  color: #fff;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  padding: 5px 10px;
+  margin-left: 20px;
+  transition: all 0.4; }
+  .chart-btn:hover {
+    cursor: pointer;
+    color: #7377bf;
+    background-color: #fff; }
+  .chart-btn:focus {
+    outline: none; }
+
 .active-nav-link {
   border-color: #fc0 !important; }

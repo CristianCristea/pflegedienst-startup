@@ -5,3 +5,24 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.chart-btn {
+  background-color: $ship-cove;
+  border: 2px solid $ship-cove;
+  color: $white;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  padding: 5px 10px;
+  margin-left: 20px;
+  transition: all 0.4;
+
+  &:hover {
+    cursor: pointer;
+    color: $ship-cove;
+    background-color: $white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -7,55 +7,86 @@ export default class BarChart extends Component {
     super(props);
 
     this.state = {
-      sortedRecords: [],
-      totalPopulation: {},
-      labels: [],
-      populationNumber: [],
-      backgroundColor: [],
-      borderColor: []
+      sortedRecordsOver65: [],
+      sortedRecordsDeaths: [],
+      chartData: {}
     };
   }
 
-  sortRecords() {
-    const sortedRecords = this.props.records.sort((a, b) => {
+  sortRecords(records) {
+    return records.sort((a, b) => {
       return a['cityDistrict'] < b['cityDistrict'] ? -1 : 1;
     });
+  }
 
-    // after sortedRecords is in the state, store chart data
+  createChartData(records, label, bgColor, bdColor) {
+    const labels = [];
+    const numbers = [];
+    const backgroundColor = [];
+    const borderColor = [];
+
+    records.forEach(record => {
+      labels.push(this.props.formatName(record['cityDistrict']));
+      numbers.push(record['numbers']);
+      backgroundColor.push(bgColor);
+      borderColor.push(bdColor);
+    });
+
+    return {
+      labels: labels,
+      datasets: [
+        {
+          label: label,
+          data: numbers,
+          backgroundColor: backgroundColor,
+          borderColor: borderColor,
+          borderWidth: 1
+        }
+      ]
+    };
+  }
+
+  storeRecords() {
+    const sortedRecordsOver65 = this.sortRecords(this.props.recordsOldPop);
+    const sortedRecordsDeaths = this.sortRecords(this.props.recordsDeaths);
+
     this.setState(
       {
-        sortedRecords: sortedRecords
+        sortedRecordsOver65: sortedRecordsOver65,
+        sortedRecordsDeaths: sortedRecordsDeaths
       },
       () => {
-        this.createChartData();
+        this.btnDefaultChartValues.click();
       }
     );
   }
 
-  createChartData() {
-    const labels = [];
-    const populationNumber = [];
-    const backgroundColor = [];
-    const borderColor = [];
+  changeChartData(e) {
+    let data = {};
+    if (e.target.value === 'deaths') {
+      data = this.createChartData(
+        this.state.sortedRecordsDeaths,
+        'Deaths',
+        '#212121',
+        'rgba(255, 204, 0, .6)'
+      );
+    } else if (e.target.value === 'over65') {
+      data = this.createChartData(
+        this.state.sortedRecordsOver65,
+        'Over 65',
+        'rgba(255, 204, 0, .6)',
+        '#212121'
+      );
+    }
 
-    this.state.sortedRecords.forEach(record => {
-      labels.push(this.props.formatName(record['cityDistrict']));
-      populationNumber.push(record['oldPop']);
-      backgroundColor.push('rgba(255, 204, 0, .6)');
-      borderColor.push('rgb(115, 119, 191)');
-    });
+    this.setState({ chartData: data });
+  }
 
-    this.setState({
-      labels: labels,
-      populationNumber: populationNumber,
-      backgroundColor: backgroundColor,
-      borderColor: borderColor
-    });
+  componentWillMount() {
+    this.storeRecords();
   }
 
   componentDidMount() {
-    this.sortRecords();
-
     // set default chart values
     defaults.global.defaultColor = 'rgba(255, 204, 0, .6)';
     defaults.global.defaultFontColor = '#212121';
@@ -64,35 +95,30 @@ export default class BarChart extends Component {
   }
 
   render() {
-    const {
-      labels,
-      populationNumber,
-      backgroundColor,
-      borderColor
-    } = this.state;
-
     return (
       <div className="bar-chart">
-        <Bar
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: 'Population over 65',
-                data: populationNumber,
-                backgroundColor: backgroundColor,
-                borderColor: borderColor,
-                borderWidth: 1
-              }
-            ]
-          }}
-        />
+        <button
+          value="over65"
+          className="chart-btn"
+          onClick={e => this.changeChartData(e)}
+          ref={btn => (this.btnDefaultChartValues = btn)}
+        >
+          Over 65
+        </button>
+        <button
+          value="deaths"
+          className="chart-btn"
+          onClick={e => this.changeChartData(e)}
+        >
+          Deaths
+        </button>
+        <Bar data={this.state.chartData} />
       </div>
     );
   }
 }
 
 BarChart.propTypes = {
-  records: PropTypes.array.isRequired,
+  recordsOldPop: PropTypes.array.isRequired,
   formatName: PropTypes.func.isRequired
 };

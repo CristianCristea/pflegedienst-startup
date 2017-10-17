@@ -10,9 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      records: []
-    };
+    this.state = {};
   }
 
   // filter raw data(csv string) into array of lines
@@ -41,10 +39,18 @@ class App extends Component {
     return districtsData.map(district => {
       return {
         agingRate: Number(district[3].replace(',', '.')),
-        oldPop: Number(district[4]),
-        youngPop: Number(district[5]),
+        numbers: Number(district[4]),
         year: Number(district[8]),
         cityDistrict: district[11].trim()
+      };
+    });
+  }
+
+  deathsDistricts(districtsData) {
+    return districtsData.map(district => {
+      return {
+        numbers: Number(district[4]),
+        cityDistrict: district[12].trim()
       };
     });
   }
@@ -56,9 +62,15 @@ class App extends Component {
   componentDidMount() {}
 
   render() {
-    const csvData = this.processCSVData(this.props.agingRateData);
-    const rawDistrictsData = this.sanitizeData(csvData);
-    const records = this.agingRateDistricts(rawDistrictsData);
+    const oldPopCSVData = this.sanitizeData(
+      this.processCSVData(this.props.agingRateData)
+    );
+    const deathsCSVData = this.sanitizeData(
+      this.processCSVData(this.props.deathsData)
+    );
+
+    const recordsOldPop = this.agingRateDistricts(oldPopCSVData);
+    const recordsDeaths = this.deathsDistricts(deathsCSVData);
 
     return (
       <div className="App">
@@ -67,8 +79,12 @@ class App extends Component {
         <div className="wrapper">
           <InfoBar />
           <div className="inner-wrapper">
-            <Jumbotron title="Population over 65" />
-            <BarChart records={records} formatName={this.formatName} />
+            <Jumbotron title="Demografie München" />
+            <BarChart
+              recordsOldPop={recordsOldPop}
+              recordsDeaths={recordsDeaths}
+              formatName={this.formatName}
+            />
             <Footer />
           </div>
         </div>
